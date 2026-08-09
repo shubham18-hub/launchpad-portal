@@ -296,6 +296,19 @@ main > section { max-width: 1110px; margin: auto; padding: 60px 26px; border-top
 .admin-panel form { display: grid; gap: 15px; }
 .admin-panel label { display: grid; gap: 7px; color: #c8cede; font-size: 13px; font-weight: 600; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.modal-tabs { display: flex; gap: 8px; margin: 4px 0 22px; }
+.modal-tab { flex: 1; border: 1px solid var(--line); background: transparent; color: var(--muted); border-radius: 10px; padding: 10px; font-size: 13px; font-weight: 700; cursor: pointer; transition: .15s; }
+.modal-tab.active { color: #fff; border-color: var(--flare); background: #241408; }
+.admin-tab-panel h2 { font-size: 24px; margin-bottom: 10px; }
+.accounts-heading { font-size: 16px; margin: 26px 0 12px; }
+.user-list { display: grid; gap: 8px; max-height: 220px; overflow: auto; }
+.user-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 10px; padding: 10px 13px; font-size: 13px; }
+.user-row b { font-weight: 600; }
+.user-row span { color: var(--muted); font-size: 12px; }
+.role-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; padding: 4px 8px; border-radius: 99px; color: #9ec6ff; background: #213c67; }
+.role-tag.admin { color: #ffcaa0; background: #4a2c14; }
+.role-tag.reviewer { color: #c9b3ff; background: #2e2350; }
 input, select, textarea { font: inherit; color: #eff3ff; background: #161a28; border: 1px solid #353c54; border-radius: 9px; padding: 11px 12px; outline: none; }
 textarea { min-height: 100px; resize: vertical; }
 input:focus, select:focus, textarea:focus { border-color: var(--flare); }
