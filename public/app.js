@@ -5,10 +5,10 @@ let selectedFile = null;
 let filter = 'all';
 
 const $ = (s) => document.querySelector(s);
-const formatDate = (d) =>
-  new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }).format(
-    new Date(d + 'T12:00:00')
-  );
+const formatDate = (d) => {
+  const date = typeof d === 'string' && d.length === 10 ? new Date(d + 'T12:00:00') : new Date(d);
+  return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }).format(date);
+};
 
 async function api(path, options = {}) {
   const res = await fetch(`/api${path}`, {
