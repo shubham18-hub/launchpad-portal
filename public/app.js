@@ -287,6 +287,47 @@ function closeMobileNav() {
   $('#menuToggle').setAttribute('aria-expanded', 'false');
 }
 
+function openAdminModal() {
+  $('#adminModal').classList.add('show');
+  $('#adminModal').setAttribute('aria-hidden', 'false');
+  const accountsTabBtn = document.querySelector('[data-admin-tab="accounts"]');
+  if (currentUser.role !== 'admin') {
+    // Only admins can manage accounts (reviewers can only publish tasks).
+    accountsTabBtn.hidden = true;
+    switchAdminTab('tasks');
+  } else {
+    accountsTabBtn.hidden = false;
+  }
+}
+
+function switchAdminTab(tab) {
+  $$('[data-admin-tab]').forEach((btn) => btn.classList.toggle('active', btn.dataset.adminTab === tab));
+  $('#adminTabTasks').hidden = tab !== 'tasks';
+  $('#adminTabAccounts').hidden = tab !== 'accounts';
+  if (tab === 'accounts') loadUsers();
+}
+
+async function loadUsers() {
+  const list = $('#userList');
+  list.innerHTML = `<p class="no-submissions">Loading…</p>`;
+  try {
+    const users = await api('/admin/users');
+    if (users.length === 0) {
+      list.innerHTML = `<p class="no-submissions">No accounts yet.</p>`;
+      return;
+    }
+    list.innerHTML = users
+      .map(
+        (u) => `<div class="user-row"><div><b>${escapeHtml(u.name)}</b><br /><span>${escapeHtml(
+          u.email
+        )}</span></div><span class="role-tag ${u.role}">${u.role}</span></div>`
+      )
+      .join('');
+  } catch (err) {
+    list.innerHTML = `<p class="no-submissions">${escapeHtml(err.message)}</p>`;
+  }
+}
+
 document.addEventListener('click', (e) => {
   const v = e.target.closest('[data-task]');
   if (v) openDetail(+v.dataset.task);
@@ -296,8 +337,7 @@ document.addEventListener('click', (e) => {
     if (!isStaff()) {
       toast('Sign in with an admin account to publish tasks.');
     } else {
-      $('#adminModal').classList.add('show');
-      $('#adminModal').setAttribute('aria-hidden', 'false');
+      openAdminModal();
     }
   }
 
@@ -337,6 +377,9 @@ document.addEventListener('click', (e) => {
   }
 
   if (e.target.closest('#primaryNav a')) closeMobileNav();
+
+  const adminTab = e.target.closest('[data-admin-tab]');
+  if (adminTab) switchAdminTab(adminTab.dataset.adminTab);
 });
 
 $('#taskForm').addEventListener('submit', async (e) => {
@@ -351,6 +394,19 @@ $('#taskForm').addEventListener('submit', async (e) => {
     e.target.reset();
     closeModals();
     toast('New task published successfully.');
+  } catch (err) {
+    toast(err.message);
+  }
+});
+
+$('#userForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.target));
+  try {
+    await api('/admin/users', { method: 'POST', body: JSON.stringify(data) });
+    e.target.reset();
+    await loadUsers();
+    toast(`Account created for ${data.email}.`);
   } catch (err) {
     toast(err.message);
   }
