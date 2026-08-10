@@ -132,7 +132,7 @@ function openSubmit(task) {
     task.points
   }</b></div></div><div class="submission">${
     sub
-      ? `<div class="submitted-box"><b>✓ Work submitted</b>${escapeHtml(sub.file_name)} · Submitted ${formatDate(
+      ? `<div class="submitted-box"><b>✓ Work submitted</b><a href="/api/submissions/${sub.id}/file" target="_blank" rel="noopener" style="color:#8fbdff;text-decoration:none;border-bottom:1px dashed currentColor">${escapeHtml(sub.file_name)}</a> · Submitted ${formatDate(
           sub.submitted_at
         )}${sub.grade != null ? ` · Graded ${sub.grade}/${task.points}` : ''}</div><button class="primary" id="replaceBtn">Replace submission</button>`
       : `<h3>Submit your work</h3><label class="dropzone" for="upload"><input id="upload" type="file" accept="application/pdf" hidden><span style="font-size:30px">⇧</span><strong>Choose a PDF or drag it here</strong><span class="file-note">PDF files only · maximum 10 MB</span><span id="fileName" class="file-name"></span></label><button class="primary" id="submitBtn" disabled>Submit task <span>→</span></button>`
