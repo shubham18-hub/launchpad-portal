@@ -25,6 +25,7 @@ const statements = [
      user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
      file_name TEXT NOT NULL,
      stored_name TEXT NOT NULL,
+     file_data BYTEA,
      grade INTEGER,
      graded_by INTEGER REFERENCES users(id),
      graded_at TIMESTAMPTZ,
