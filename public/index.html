@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Launchpad · Student Entrepreneurship Program</title>
-    <meta name="description" content="Launchpad is a mission-based cohort program: complete tracked challenges, submit your work, and build individual momentum." />
+    <title>NEC Portal · Student Event Platform</title>
+    <meta name="description" content="NEC Portal: Submit tasks, compete with peers, and showcase your skills. Individual participant event platform." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
@@ -13,16 +13,16 @@
   <body>
     <div class="sky"></div>
 
+    <!-- HEADER/TOPBAR -->
     <header class="topbar">
-      <a class="brand" href="#top" aria-label="Launchpad home">
+      <a class="brand" href="#top" aria-label="NEC Portal home">
         <span class="brand-mark"><i></i><i></i><i></i></span>
-        <span><b>launchpad</b><small>STUDENT PROGRAM</small></span>
+        <span><b>NEC</b><small>EVENT PORTAL</small></span>
       </a>
       <nav id="primaryNav">
-        <a href="#tracks">Tracks</a>
-        <a href="#how">How it works</a>
-        <a href="#team">Mentors</a>
-        <a href="#tasks" id="missionsLink">Missions</a>
+        <a href="#events">Events</a>
+        <a href="#how">How to compete</a>
+        <a href="#tasks" id="missionsLink">Tasks</a>
         <button id="adminOpen" class="ghost">Admin</button>
         <button id="loginOpen" class="ghost">Sign in</button>
       </nav>
@@ -30,41 +30,41 @@
     </header>
 
     <main id="top">
-      <!-- HERO -->
+      <!-- HERO SECTION -->
       <section class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">AUGUST 2026 · COHORT 01</p>
-          <h1>Turn ideas into<br /><em>momentum.</em></h1>
-          <p class="intro">Launchpad is a mission-based program for student builders. Complete tracked challenges, submit your work, and grow with a cohort that ships.</p>
+          <p class="eyebrow">AUGUST 2026 · OPEN NOW</p>
+          <h1>Showcase your<br /><em>potential.</em></h1>
+          <p class="intro">Compete in real challenges. Submit your work. Get recognized. NEC Portal is where individual builders demonstrate their skills and climb the ranks.</p>
           <div class="hero-actions">
-            <button class="primary hero-cta" id="heroSignIn">Sign in to your cohort <span>→</span></button>
-            <a class="text-link" href="#tracks">See how the tracks work ↓</a>
+            <button class="primary hero-cta" id="heroSignIn">Start competing <span>→</span></button>
+            <a class="text-link" href="#events">Browse events ↓</a>
           </div>
         </div>
-        <div class="orbit"><span class="planet">✦</span><span class="orbit-label">YOUR NEXT<br />MISSION</span></div>
+        <div class="orbit"><span class="planet">⚡</span><span class="orbit-label">YOUR NEXT<br />CHALLENGE</span></div>
       </section>
 
-      <!-- TELEMETRY / ABOUT -->
+      <!-- QUICK STATS -->
       <section class="telemetry">
         <div class="telemetry-head">
-          <p class="eyebrow">MISSION BRIEFING</p>
-          <h2>Built for builders, not busywork</h2>
-          <p class="section-copy">Every cohort moves through three tracks of real, submitted work — reviewed by mentors, not just checked off. Replace the numbers below with your program's own stats.</p>
+          <p class="eyebrow">PLATFORM STATS</p>
+          <h2>Built for individual excellence</h2>
+          <p class="section-copy">Submit tasks as an individual participant. Get mentor-reviewed feedback. Track your progress across multiple challenges and events.</p>
         </div>
         <div class="readouts">
-          <div class="readout"><b data-stat>03</b><span>Tracks per cohort</span></div>
-          <div class="readout"><b data-stat>01</b><span>Live cohort running</span></div>
+          <div class="readout"><b data-stat id="eventCount">01</b><span>Live events</span></div>
+          <div class="readout"><b data-stat id="taskCount">0</b><span>Active tasks</span></div>
           <div class="readout"><b data-stat>PDF</b><span>Submission format</span></div>
           <div class="readout"><b data-stat>100%</b><span>Mentor-reviewed</span></div>
         </div>
       </section>
 
-      <!-- TRACKS / TRAJECTORY SIGNATURE -->
-      <section id="tracks" class="tracks">
+      <!-- EVENT STAGES / TASK LEVELS -->
+      <section id="events" class="tracks">
         <div class="section-heading">
-          <div><p class="eyebrow">THE FLIGHT PATH</p><h2>Three tracks, one trajectory</h2></div>
+          <div><p class="eyebrow">CHALLENGE STAGES</p><h2>Three levels of competition</h2></div>
         </div>
-        <p class="section-copy">Each mission belongs to a track. The tracks build on each other — clear one stage and the next one opens up.</p>
+        <p class="section-copy">Each event is divided into stages. Complete them in order to build your portfolio and earn recognition.</p>
 
         <div class="trajectory" id="trajectory">
           <svg viewBox="0 0 900 260" preserveAspectRatio="none" aria-hidden="true">
@@ -74,84 +74,101 @@
             <span class="waypoint-dot"></span>
             <div class="waypoint-card">
               <b>01 · Preliminary</b>
-              <p>Lay the foundation — define who you are and what you're building.</p>
+              <p>Establish the foundation — present your core idea and approach.</p>
             </div>
           </div>
           <div class="waypoint" style="left:48%;">
             <span class="waypoint-dot"></span>
             <div class="waypoint-card">
-              <b>02 · Ignite</b>
-              <p>Build momentum — put your work in front of real people.</p>
+              <b>02 · Ignite Propel</b>
+              <p>Build it further — deliver a refined prototype or execution.</p>
             </div>
           </div>
           <div class="waypoint" style="left:93%;">
             <span class="waypoint-dot"></span>
             <div class="waypoint-card">
-              <b>03 · Propel</b>
-              <p>Push further — set up what comes next for your venture.</p>
+              <b>03 · Comprehensive</b>
+              <p>Master level — showcase complete implementation and results.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- HOW IT WORKS -->
+      <!-- HOW TO COMPETE -->
       <section id="how" class="how">
         <div class="section-heading">
-          <div><p class="eyebrow">MISSION CONTROL</p><h2>How a mission runs</h2></div>
+          <div><p class="eyebrow">COMPETITION FLOW</p><h2>How to participate</h2></div>
         </div>
         <ol class="steps">
-          <li><span>01</span><div><b>Sign in</b><p>Use the account your program administrator created for you.</p></div></li>
-          <li><span>02</span><div><b>Pick a mission</b><p>Browse open tasks by track and read the brief.</p></div></li>
-          <li><span>03</span><div><b>Submit your work</b><p>Upload a PDF before the deadline — replace it any time before review.</p></div></li>
-          <li><span>04</span><div><b>Get graded</b><p>A mentor reviews your submission and scores it against the brief.</p></div></li>
+          <li><span>01</span><div><b>Create account</b><p>Sign up as an individual participant with your email.</p></div></li>
+          <li><span>02</span><div><b>Browse tasks</b><p>View active tasks across all stages and events.</p></div></li>
+          <li><span>03</span><div><b>Submit work</b><p>Upload a PDF before the deadline. Update anytime before review.</p></div></li>
+          <li><span>04</span><div><b>Get feedback</b><p>Mentors review and grade your submission. See your score.</p></div></li>
         </ol>
       </section>
 
-      <!-- TASKS (AUTH-GATED APP) -->
+      <!-- MAIN TASK DASHBOARD (AUTH-GATED) -->
       <section id="tasks" class="task-area">
-        <div class="section-heading"><div><p class="eyebrow">YOUR MISSIONS</p><h2>Tasks</h2></div><span id="taskCount" class="count"></span></div>
+        <div class="section-heading">
+          <div><p class="eyebrow">ACTIVE TASKS</p><h2>Your challenges</h2></div>
+          <span id="taskCountBadge" class="count">0 tasks</span>
+        </div>
+        
         <div class="tabs" role="tablist">
           <button class="tab active" data-filter="all">All tasks</button>
           <button class="tab" data-filter="preliminary">Preliminary</button>
-          <button class="tab" data-filter="ignite">Ignite</button>
-          <button class="tab" data-filter="propel">Propel</button>
+          <button class="tab" data-filter="ignite">Ignite Propel</button>
+          <button class="tab" data-filter="comprehensive">Comprehensive</button>
         </div>
+        
         <div id="taskGrid" class="task-grid"></div>
+        
         <div id="taskEmpty" class="empty-state" hidden>
-          <p class="eyebrow">NO SIGNAL</p>
-          <h3>Sign in to see your missions</h3>
-          <p>Tasks are visible once you're signed in with your cohort account.</p>
+          <p class="eyebrow">NO ACTIVE TASKS</p>
+          <h3>Sign in to see your challenges</h3>
+          <p>New tasks will appear here as they're published. Check back soon for new opportunities.</p>
           <button class="primary" id="emptySignIn">Sign in <span>→</span></button>
         </div>
       </section>
 
-      <section id="progress" class="progress-card"><div><p class="eyebrow">COHORT PROGRESS</p><h2>Your journey so far</h2></div><div class="progress-stat"><strong id="progressNumber">0<span>/3</span></strong><p>missions submitted</p></div><div class="progress-line"><i id="progressLine"></i></div></section>
-
-      <!-- TEAM -->
-      <section id="team" class="team">
-        <div class="section-heading">
-          <div><p class="eyebrow">GROUND CREW</p><h2>Program mentors</h2></div>
+      <!-- PROGRESS TRACKER -->
+      <section id="progress" class="progress-card">
+        <div>
+          <p class="eyebrow">YOUR PROGRESS</p>
+          <h2>Submissions tracker</h2>
         </div>
-        <p class="section-copy edit-note">Placeholder crew — swap in your real team's names, roles and photos.</p>
+        <div class="progress-stat">
+          <strong id="progressNumber">0<span>/</span><span id="totalTasks">0</span></strong>
+          <p>tasks submitted</p>
+        </div>
+        <div class="progress-line"><i id="progressLine"></i></div>
+      </section>
+
+      <!-- PROGRAM MENTORS -->
+      <section id="mentors" class="team">
+        <div class="section-heading">
+          <div><p class="eyebrow">REVIEW TEAM</p><h2>Your mentors</h2></div>
+        </div>
+        <p class="section-copy edit-note">Placeholder mentors — these will be your reviewers and evaluators.</p>
         <div class="team-grid">
           <div class="team-card"><span class="avatar" aria-hidden="true">A</span><b>Add name</b><p>Program Lead</p></div>
           <div class="team-card"><span class="avatar" aria-hidden="true">B</span><b>Add name</b><p>Track Mentor · Preliminary</p></div>
           <div class="team-card"><span class="avatar" aria-hidden="true">C</span><b>Add name</b><p>Track Mentor · Ignite</p></div>
-          <div class="team-card"><span class="avatar" aria-hidden="true">D</span><b>Add name</b><p>Track Mentor · Propel</p></div>
+          <div class="team-card"><span class="avatar" aria-hidden="true">D</span><b>Add name</b><p>Track Mentor · Final</p></div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="footer-top">
-        <a class="brand" href="#top"><span class="brand-mark"><i></i><i></i><i></i></span><span><b>launchpad</b><small>STUDENT PROGRAM</small></span></a>
+        <a class="brand" href="#top"><span class="brand-mark"><i></i><i></i><i></i></span><span><b>NEC</b><small>EVENT PORTAL</small></span></a>
         <div class="footer-links">
-          <a href="#tracks">Tracks</a><a href="#how">How it works</a><a href="#team">Mentors</a><a href="#tasks">Missions</a>
+          <a href="#events">Events</a><a href="#how">How to compete</a><a href="#mentors">Mentors</a><a href="#tasks">Tasks</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>Questions about the program? Reach out at <a href="mailto:hello@example.com">hello@example.com</a> — replace with your real contact.</p>
-        <p class="copy">© 2026 Launchpad. Built for student builders.</p>
+        <p>Have questions? Contact us at <a href="mailto:hello@example.com">hello@example.com</a></p>
+        <p class="copy">© 2026 NEC Portal. For individual participants.</p>
       </div>
     </footer>
 
@@ -166,7 +183,7 @@
 
       <div id="adminTabTasks" class="admin-tab-panel">
         <h2>Publish a new task</h2>
-        <form id="taskForm"><label>Task title<input name="title" required placeholder="e.g. Design your event poster" /></label><div class="form-row"><label>Track<select name="track"><option value="preliminary">Preliminary</option><option value="ignite">Ignite</option><option value="propel">Propel</option></select></label><label>Deadline<input name="deadline" type="date" required /></label></div><label>Maximum points<input name="points" type="number" min="1" value="100" required /></label><label>Instructions<textarea name="description" required placeholder="What should students create and submit?"></textarea></label><button class="primary" type="submit">Publish task <span>→</span></button></form>
+        <form id="taskForm"><label>Task title<input name="title" required placeholder="e.g. Brand Your E-Cell" /></label><div class="form-row"><label>Stage<select name="track"><option value="preliminary">Preliminary</option><option value="ignite">Ignite Propel</option><option value="comprehensive">Comprehensive</option></select></label><label>Deadline<input name="deadline" type="date" required /></label></div><label>Maximum points<input name="points" type="number" min="1" value="100" required /></label><label>Instructions<textarea name="description" required placeholder="What should participants create and submit?"></textarea></label><button class="primary" type="submit">Publish task <span>→</span></button></form>
       </div>
 
       <div id="adminTabAccounts" class="admin-tab-panel" hidden>
@@ -194,13 +211,13 @@
 
       <div id="authTabSignin" class="admin-tab-panel">
         <h2>Welcome back</h2>
-        <p class="auth-copy">Sign in with your Launchpad account.</p>
+        <p class="auth-copy">Sign in with your NEC Portal account.</p>
         <form id="loginForm"><label>Email<input name="email" type="email" autocomplete="email" required placeholder="you@example.com" /></label><label>Password<input name="password" type="password" autocomplete="current-password" required placeholder="Your password" /></label><button class="primary" type="submit">Sign in <span>→</span></button></form>
       </div>
 
       <div id="authTabSignup" class="admin-tab-panel" hidden>
-        <h2>Join a cohort</h2>
-        <p class="auth-copy">Create your student account to start submitting missions.</p>
+        <h2>Join the competition</h2>
+        <p class="auth-copy">Create your individual participant account to start submitting tasks.</p>
         <form id="registerForm"><label>Full name<input name="name" autocomplete="name" required placeholder="e.g. Asha Rao" /></label><label>Email<input name="email" type="email" autocomplete="email" required placeholder="you@example.com" /></label><label>Password<input name="password" type="password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters" /></label><button class="primary" type="submit">Create account <span>→</span></button></form>
       </div>
     </article></div>
