@@ -1,23 +1,13 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
-const crypto = require('crypto');
 const multer = require('multer');
 const pool = require('../db/pool');
 const { requireAuth, requireRole } = require('../middleware/auth');
 
 const router = express.Router();
 
-const uploadDir = process.env.UPLOAD_DIR || './uploads';
-fs.mkdirSync(uploadDir, { recursive: true });
-
-const storage = multer.diskStorage({
-  destination: (_req, _file, cb) => cb(null, uploadDir),
-  filename: (_req, file, cb) => {
-    const unique = crypto.randomBytes(16).toString('hex');
-    cb(null, `${unique}${path.extname(file.originalname)}`);
-  },
-});
+// Use memory storage instead of disk (files will be stored in database)
+const storage = multer.memoryStorage();
 
 const upload = multer({
   storage,
@@ -40,26 +30,17 @@ router.post('/:taskId', requireAuth, (req, res) => {
       req.params.taskId,
     ]);
     if (!taskRows[0]) {
-      fs.unlink(req.file.path, () => {});
       return res.status(404).json({ error: 'Task not found.' });
     }
 
-    // Remove a previous file for this task/user if replacing.
-    const { rows: existing } = await pool.query(
-      'SELECT stored_name FROM submissions WHERE task_id = $1 AND user_id = $2',
-      [req.params.taskId, req.user.id]
-    );
-    if (existing[0]) {
-      fs.unlink(path.join(uploadDir, existing[0].stored_name), () => {});
-    }
-
+    // Insert or update submission with file data stored in database
     const { rows } = await pool.query(
-      `INSERT INTO submissions (task_id, user_id, file_name, stored_name)
-       VALUES ($1,$2,$3,$4)
+      `INSERT INTO submissions (task_id, user_id, file_name, stored_name, file_data)
+       VALUES ($1,$2,$3,$4,$5)
        ON CONFLICT (task_id, user_id)
-       DO UPDATE SET file_name = $3, stored_name = $4, submitted_at = now(), grade = NULL, graded_by = NULL, graded_at = NULL
-       RETURNING *`,
-      [req.params.taskId, req.user.id, req.file.originalname, req.file.filename]
+       DO UPDATE SET file_name = $3, stored_name = $4, file_data = $5, submitted_at = now(), grade = NULL, graded_by = NULL, graded_at = NULL
+       RETURNING id, task_id, user_id, file_name, stored_name, grade, graded_by, graded_at, submitted_at`,
+      [req.params.taskId, req.user.id, req.file.originalname, req.file.originalname, req.file.buffer]
     );
     res.status(201).json(rows[0]);
   });
@@ -88,7 +69,15 @@ router.get('/:id/file', requireAuth, async (req, res) => {
     return res.status(403).json({ error: 'You cannot access this file.' });
   }
   
-  res.download(path.join(uploadDir, sub.stored_name), sub.file_name);
+  if (!sub.file_data) {
+    return res.status(404).json({ error: 'File not found.' });
+  }
+  
+  // Send file from database
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader('Content-Disposition', `attachment; filename="${sub.file_name}"`);
+  res.setHeader('Content-Length', sub.file_data.length);
+  res.send(sub.file_data);
 });
 
 // Admin/reviewer: grade a submission.
