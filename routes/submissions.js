@@ -76,11 +76,18 @@ router.get('/task/:taskId', requireAuth, requireRole('admin', 'reviewer'), async
   res.json(rows);
 });
 
-// Admin/reviewer: download a submitted file.
-router.get('/:id/file', requireAuth, requireRole('admin', 'reviewer'), async (req, res) => {
+// Admin/reviewer/student: download a submitted file.
+// Students can only download their own files; admins/reviewers can download any.
+router.get('/:id/file', requireAuth, async (req, res) => {
   const { rows } = await pool.query('SELECT * FROM submissions WHERE id = $1', [req.params.id]);
   const sub = rows[0];
   if (!sub) return res.status(404).json({ error: 'Submission not found.' });
+  
+  // Check if user has permission: own submission, or is admin/reviewer
+  if (sub.user_id !== req.user.id && !['admin', 'reviewer'].includes(req.user.role)) {
+    return res.status(403).json({ error: 'You cannot access this file.' });
+  }
+  
   res.download(path.join(uploadDir, sub.stored_name), sub.file_name);
 });
 
